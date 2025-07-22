@@ -72,9 +72,9 @@ const students: Student[] = [
 function getStudentName(student: Student): string {
   // write your code here...
 
-  return ""; // replace empty string with what you see is fit
+  return student.name; // replace empty string with what you see is fit
 }
-
+console.log(getStudentName(students[0]));
 /**
  * `getCourse` function:
  * - Accepts:
@@ -86,10 +86,9 @@ function getStudentName(student: Student): string {
  */
 function getCourse(student: Student, courseIndex: number): string {
   // write your code here...
-
-  return ""; // replace empty string with what you see is fit
+  return student.courses[courseIndex]; // replace empty string with what you see is fit
 }
-
+console.log(getCourse(students[4], 2));
 /**
  * `addCourseToStudent` function:
  * - Accepts:
@@ -104,9 +103,10 @@ function getCourse(student: Student, courseIndex: number): string {
 function addCourseToStudent(student: Student, course: string): Student {
   // write your code here...
 
+  student.courses.push(course);
   return student;
 }
-
+console.log(addCourseToStudent(students[7], "Physics"));
 /**
  * `countCourses` function:
  * - Accepts a `student` parameter of type `Student`.
@@ -116,9 +116,14 @@ function addCourseToStudent(student: Student, course: string): Student {
  */
 function countCourses(student: Student): number {
   // write your code here...
+  let count = 0;
+  for (let i = 0; i < student.courses.length; i++) {
+    count++;
+  }
 
-  return -1; // replace -1 with what you see is fit
+  return count; // replace -1 with what you see is fit
 }
+console.log(countCourses(students[1]));
 
 /**
  * `removeCourseFromStudent` function:
@@ -133,9 +138,11 @@ function countCourses(student: Student): number {
  */
 function removeCourseFromStudent(student: Student, course: string): Student {
   // write your code here...
-
+  const newCoursArray = student.courses.filter((student) => student !== course);
+  student.courses = newCoursArray;
   return student;
 }
+console.log(removeCourseFromStudent(students[6], "Science"));
 
 /**
  * `findStudentById` function:
@@ -155,10 +162,12 @@ function findStudentById(
   studentId: number
 ): Student | undefined {
   // write your code here...
+  const foundStudent = students.find((student) => student.id === studentId);
+  return foundStudent;
 
   return undefined; // replace undefined with what you see is fit
 }
-
+console.log(findStudentById(students, 10));
 export {
   Student,
   getStudentName,
